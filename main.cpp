@@ -30,6 +30,9 @@ void mergeArray(vector<int>& mergedVector, vector<int> arrayLeft, vector<int> ar
 	//if the value in the right array is less than the value in the left array, append the value to the vector and continue down the right array
 	//CHECKS
 	//need to check if there are any remaining numbers in either array to offload into merge
+	//NEED TO FIX
+	//drop numbers that have been added to vector
+	/*
 	for (int i = 0; i < arrayLeft.size(); i++ )
 	{
 		for (int j = 0; j < arrayRight.size(); j++)
@@ -44,6 +47,26 @@ void mergeArray(vector<int>& mergedVector, vector<int> arrayLeft, vector<int> ar
 				break;
 
 			}
+		}
+	}
+	*/
+	//test faster merge loop
+	int left_index = 0;
+	int right_index = 0;
+
+	for (int i = 0; i < arrayLeft.size() + arrayRight.size(); i++)
+	{
+		//compare left with right
+
+		if ((right_index==arrayRight.size()) || (arrayLeft[left_index] < arrayRight[right_index]))
+		{
+			mergedVector.push_back(arrayLeft[left_index]);
+			left_index++;
+		}
+		else
+		{
+			mergedVector.push_back(arrayRight[right_index]);
+			right_index++;
 		}
 	}
 }
